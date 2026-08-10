@@ -1,5 +1,5 @@
 #include "programa.h"
-
+#include "elementovisitor.h"
 Programa::Programa() {}
 
 void Programa:: agregar(ComponenteProyecto* c) {
