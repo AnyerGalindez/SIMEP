@@ -24,6 +24,7 @@ qt_add_qml_module(appSIMEP
         SOURCES componenteproyecto.h componenteproyecto.cpp
         SOURCES actividad.h actividad.cpp
         SOURCES programa.h programa.cpp
+        SOURCES indicador.h indicador.cpp
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
