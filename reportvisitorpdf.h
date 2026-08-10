@@ -1,5 +1,9 @@
 #ifndef REPORTVISITORPDF_H
 #define REPORTVISITORPDF_H
+#include <QString>
+#include "elementovisitor.h"
+#include "actividad.h"
+#include "programa.h"
 
 class ReportVisitorPDF : public ElementoVisitor
 {
