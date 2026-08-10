@@ -16,7 +16,7 @@ Simulador::Simulador(QObject *parent) : QObject(parent)
     });
 }
 
-Simulador::~Simulador() {
+Simulador::~Simulador() { //hacemos el destructor
     delete indicador;
 }
 
