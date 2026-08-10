@@ -10,5 +10,6 @@ int Actividad:: obtenerBeneficiarios(){
 }
 
 void Actividad ::aceptar(ElementoVisitor *v){
+    v->visitarActividad(this);
 
 }

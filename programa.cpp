@@ -17,6 +17,7 @@ int Programa:: obtenerBeneficiarios(){
 }
 
 void Programa::aceptar(ElementoVisitor *v){
+    v->visitarPrograma(this);
 
 }
 
