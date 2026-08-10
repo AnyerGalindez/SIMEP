@@ -13,6 +13,14 @@ ReportVisitorPDF::ReportVisitorPDF() {
 
 // Métodos obligatorios para recorrer el árbol
 void ReportVisitorPDF::visitarActividad(Actividad* a) {
+    reporteContext += "----------------------------------------\n";
+    reporteContext += "ACTIVIDAD DE RESPUESTA:\n";
+
+    // Aquí asumo que tienes un getNombre() en actividad.h. Si se llama distinto, cámbialo.
+    // reporteContext += "Nombre de la actividad: " + a->getNombre() + "\n";
+
+    // Este método sabemos que existe por tu Composite
+    reporteContext += "Beneficiarios alcanzados: " + QString::number(a->obtenerBeneficiarios()) + "\n\n";
 }
 
 void ReportVisitorPDF::visitarPrograma(Programa* p) {
