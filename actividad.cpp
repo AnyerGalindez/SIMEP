@@ -1,3 +1,14 @@
 #include "actividad.h"
 
-Actividad::Actividad() {}
+Actividad::Actividad() {
+    familias=0;
+    comercios=0;
+}
+
+int Actividad:: obtenerBeneficiarios(){
+    return familias+comercios;
+}
+
+void Actividad ::aceptar(ElementoVisitor *v){
+
+}
