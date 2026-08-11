@@ -16,7 +16,7 @@ Simulador::Simulador(QObject *parent) : QObject(parent)
     });
 }
 
-Simulador::~Simulador() { //hacemos el destructor
+Simulador::~Simulador() {
     delete indicador;
 }
 
@@ -32,4 +32,11 @@ void Simulador::iniciarSimulacion() {
 void Simulador::detenerSimulacion() {
     timer->stop();
     qDebug() << "--- Simulacion Detenida ---";
+}
+
+void Simulador::reiniciarSimulacion() {
+    timer->stop();
+    indicador->actualizarValor(0.0);
+    emit valorCambiado();
+    qDebug() << "--- Simulacion Reiniciada ---";
 }

@@ -16,16 +16,16 @@ public:
 
     double obtenerValorIndicador() const;
 
-public slots:
-    void iniciarSimulacion();
-    void detenerSimulacion();
+    Q_INVOKABLE void iniciarSimulacion();
+    Q_INVOKABLE void detenerSimulacion();
+    Q_INVOKABLE void reiniciarSimulacion(); // <-- Nuevo método
 
 signals:
     void valorCambiado();
 
 private:
-    QTimer *timer;
     IndicadorNumerico *indicador;
+    QTimer *timer;
 };
 
 #endif // SIMULADOR_H
