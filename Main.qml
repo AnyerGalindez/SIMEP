@@ -46,16 +46,16 @@ Window {
             inputEmpresa.forceActiveFocus()
             return false
         }
-        if (inputCoordenadas.text.trim() === "") {
-            mostrarNotificacion("⚠️ Por favor ingresa las coordenadas.")
-            inputCoordenadas.forceActiveFocus()
-            return false
-        }
-        if (!inputCoordenadas.acceptableInput) {
-            mostrarNotificacion("⚠️ Formato de coordenadas inválido (Ej: 10.0647, -69.3570).")
-            inputCoordenadas.forceActiveFocus()
-            return false
-        }
+        if (campoCoordenadas.text.trim() === "") {
+                mostrarNotificacion("⚠️ Por favor ingresa las coordenadas.")
+                campoCoordenadas.forceActiveFocus()
+                return false
+            }
+            if (!campoCoordenadas.acceptableInput) {
+                mostrarNotificacion("⚠️ Formato de coordenadas inválido (Ej: 10.0647, -69.3570).")
+                campoCoordenadas.forceActiveFocus()
+                return false
+            }
         if (inputDamnificados.text.trim() === "") {
             mostrarNotificacion("⚠️ Por favor ingresa el número estimado de damnificados.")
             inputDamnificados.forceActiveFocus()
@@ -489,7 +489,7 @@ Window {
                                             "Reporte_SIMEP.pdf",
                                             inputNombreProyecto.text.trim(),
                                             inputEmpresa.text.trim(),
-                                            inputCoordenadas.text.trim(),
+                                            campoCoordenadas.text.trim(),
                                             parseInt(inputDamnificados.text.trim()),
                                             familiasVal,
                                             comerciosVal
