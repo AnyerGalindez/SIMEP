@@ -1,7 +1,8 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
+import QtLocation
+import QtPositioning
 Window {
     id: window
     width: 1150
@@ -302,11 +303,18 @@ Window {
                                     color: "#334155"
                                 }
                                 TextField {
-                                    id: inputCoordenadas
+                                    id: campoCoordenadas
                                     placeholderText: "Ej. 10.0647, -69.3570"
                                     Layout.fillWidth: true
                                     validator: RegularExpressionValidator {
                                         regularExpression: /^-?\d+(\.\d+)?,\s*-?\d+(\.\d+)?$/
+                                    }
+                                }
+                                Button {
+                                    text: "🗺️ Abrir Mapa"
+                                    onClicked: {
+                                        ventanaMapa.actualizarMapa(campoCoordenadas.text) // Lee el texto y lo procesa
+                                        ventanaMapa.show() // Abre la ventana
                                     }
                                 }
                             }
@@ -533,4 +541,45 @@ Window {
             NumberAnimation { duration: 200 }
         }
     }
+    Window  {
+            id: ventanaMapa
+            title: "Visor Geográfico - SIMEP"
+            width: 700
+            height: 500
+            visible: false
+
+            // Variable dinámica para centrar (por defecto Barquisimeto)
+            property var centroActual: QtPositioning.coordinate(10.0678, -69.3474)
+
+            // Función que procesa el texto del formulario
+            function actualizarMapa(texto) {
+                var partes = texto.split(","); // Corta el texto donde haya una coma
+                if (partes.length === 2) {
+                    var lat = parseFloat(partes[0].trim());
+                    var lon = parseFloat(partes[1].trim());
+                    if (!isNaN(lat) && !isNaN(lon)) {
+                        centroActual = QtPositioning.coordinate(lat, lon);
+                    }
+                }
+            }
+
+            Map {
+                anchors.fill: parent
+                plugin: Plugin { name: "osm" }
+
+                // Reemplaza los números fijos por la variable
+                center: ventanaMapa.centroActual
+                zoomLevel: 13
+
+                MapCircle {
+                    // Reemplaza los números fijos por la variable
+                    center: ventanaMapa.centroActual
+                    radius: 3000
+                    color: "red"
+                    opacity: 0.3
+                    border.width: 2
+                    border.color: "darkred"
+                }
+            }
+        }
 }

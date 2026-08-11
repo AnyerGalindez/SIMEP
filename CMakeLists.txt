@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Agregamos los componentes estándar requeridos
 find_package(Qt6 REQUIRED COMPONENTS Quick PrintSupport)
+find_package(Qt6 COMPONENTS Core Gui Widgets Positioning Location REQUIRED)
 
 qt_standard_project_setup(REQUIRES 6.10)
 
@@ -49,6 +50,11 @@ target_link_libraries(appSIMEP
     PRIVATE
         Qt6::Quick
         Qt6::PrintSupport
+        Qt6::Core
+            Qt6::Gui
+            Qt6::Widgets
+            Qt6::Positioning
+            Qt6::Location
 )
 
 install(TARGETS appSIMEP
