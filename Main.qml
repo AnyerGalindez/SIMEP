@@ -223,6 +223,17 @@ Window {
                                         }
                                     }
                                 }
+
+                                Button {
+                                    text: "🔄 Reiniciar"
+                                    onClicked: {
+                                        if (typeof simulador !== "undefined") {
+                                            simulador.reiniciarSimulacion()
+                                        }
+                                        simulacionEnCurso = false
+                                        mostrarNotificacion("🔄 Contador de familias atendidas reiniciado")
+                                    }
+                                }
                             }
                         }
                     }
@@ -238,13 +249,14 @@ Window {
                     // Columna Izquierda: Registro de Programa y Desastre
                     Rectangle {
                         Layout.fillWidth: true
-                        Layout.preferredHeight: 350
+                        implicitHeight: layoutIzquierdo.implicitHeight + 40
                         color: "#ffffff"
                         radius: 10
                         border.color: "#e2e8f0"
                         border.width: 1
 
                         ColumnLayout {
+                            id: layoutIzquierdo
                             anchors.fill: parent
                             anchors.margins: 20
                             spacing: 12
@@ -258,7 +270,6 @@ Window {
 
                             Rectangle { Layout.fillWidth: true; height: 1; color: "#f1f5f9" }
 
-                            // Campo 1: Nombre
                             ColumnLayout {
                                 Layout.fillWidth: true
                                 spacing: 2
@@ -275,7 +286,6 @@ Window {
                                 }
                             }
 
-                            // Campo 2: Empresa
                             ColumnLayout {
                                 Layout.fillWidth: true
                                 spacing: 2
@@ -292,7 +302,6 @@ Window {
                                 }
                             }
 
-                            // Campo 3: Coordenadas
                             ColumnLayout {
                                 Layout.fillWidth: true
                                 spacing: 2
@@ -319,7 +328,6 @@ Window {
                                 }
                             }
 
-                            // Campo 4: Damnificados
                             ColumnLayout {
                                 Layout.fillWidth: true
                                 spacing: 2
@@ -337,8 +345,6 @@ Window {
                                 }
                             }
 
-                            Item { Layout.fillHeight: true }
-
                             Button {
                                 text: "💾 Guardar Registro General"
                                 Layout.alignment: Qt.AlignRight
@@ -354,13 +360,14 @@ Window {
                     // Columna Derecha: Estructura Composite (Actividades)
                     Rectangle {
                         Layout.fillWidth: true
-                        Layout.preferredHeight: 350
+                        implicitHeight: layoutDerecho.implicitHeight + 40
                         color: "#ffffff"
                         radius: 10
                         border.color: "#e2e8f0"
                         border.width: 1
 
                         ColumnLayout {
+                            id: layoutDerecho
                             anchors.fill: parent
                             anchors.margins: 20
                             spacing: 12
@@ -420,8 +427,6 @@ Window {
                                     }
                                 }
                             }
-
-                            Item { Layout.fillHeight: true }
 
                             Button {
                                 text: "➕ Agregar Actividad"
