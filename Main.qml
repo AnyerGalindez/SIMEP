@@ -237,7 +237,7 @@ Window {
                     // Columna Izquierda: Registro de Programa y Desastre
                     Rectangle {
                         Layout.fillWidth: true
-                        Layout.preferredHeight: 420
+                        Layout.preferredHeight: 350
                         color: "#ffffff"
                         radius: 10
                         border.color: "#e2e8f0"
@@ -346,7 +346,7 @@ Window {
                     // Columna Derecha: Estructura Composite (Actividades)
                     Rectangle {
                         Layout.fillWidth: true
-                        Layout.preferredHeight: 420
+                        Layout.preferredHeight: 350
                         color: "#ffffff"
                         radius: 10
                         border.color: "#e2e8f0"
@@ -429,11 +429,11 @@ Window {
                 }
 
                 // ------------------------------------------
-                // 3. GENERACIÓN DE REPORTES PDF (VISITOR)
+                // 3. GENERACIÓN DE REPORTES PDF (VISITOR - C++)
                 // ------------------------------------------
                 Rectangle {
                     Layout.fillWidth: true
-                    Layout.preferredHeight: 100
+                    Layout.preferredHeight: 110
                     color: "#ffffff"
                     radius: 10
                     border.color: "#e2e8f0"
@@ -455,7 +455,7 @@ Window {
                                 color: "#0f172a"
                             }
                             Text {
-                                text: "Genera el informe técnico en PDF."
+                                text: "Genera el informe técnico en PDF procesado por el patrón Visitor en C++."
                                 font.pixelSize: 12
                                 color: "#64748b"
                             }
@@ -464,10 +464,31 @@ Window {
                         Button {
                             text: "📄 Generar Reporte PDF"
                             highlighted: true
-                            Layout.preferredWidth: 200
+                            Layout.preferredWidth: implicitWidth + 20
+                            Layout.preferredHeight: 40
                             onClicked: {
                                 if (validarRegistroGeneral()) {
-                                    mostrarNotificacion("📄 Reporte PDF generado e impreso correctamente")
+                                    if (typeof gestorReportes !== "undefined") {
+                                        var familiasVal = parseInt(inputFamilias.text.trim()) || 0
+                                        var comerciosVal = parseInt(inputComercios.text.trim()) || 0
+
+                                        var ok = gestorReportes.generarReportePDF(
+                                            "Reporte_SIMEP.pdf",
+                                            inputNombreProyecto.text.trim(),
+                                            inputEmpresa.text.trim(),
+                                            inputCoordenadas.text.trim(),
+                                            parseInt(inputDamnificados.text.trim()),
+                                            familiasVal,
+                                            comerciosVal
+                                        )
+                                        if (ok) {
+                                            mostrarNotificacion("📄 Reporte PDF generado e impreso correctamente")
+                                        } else {
+                                            mostrarNotificacion("⚠️ Error al generar el archivo PDF")
+                                        }
+                                    } else {
+                                        mostrarNotificacion("📄 Reporte PDF generado (Modo Demostración QML)")
+                                    }
                                 }
                             }
                         }
